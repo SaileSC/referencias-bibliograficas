@@ -3,7 +3,6 @@ package com.aranoua.referencias_bibliograficas.service;
 import com.aranoua.referencias_bibliograficas.dto.autor.AutorCreateDTO;
 import com.aranoua.referencias_bibliograficas.dto.autor.AutorDTO;
 import com.aranoua.referencias_bibliograficas.model.Autor;
-import com.aranoua.referencias_bibliograficas.repository.ArtigoRepository;
 import com.aranoua.referencias_bibliograficas.repository.AutorRepository;
 import com.aranoua.referencias_bibliograficas.service.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +26,10 @@ public class AutorService {
         return AutorDTO.buildDTO(encontrarAutor(id));
     }
 
-    public AutorDTO create(AutorCreateDTO autor){
+    public AutorDTO create(AutorCreateDTO body){
         try {
             return AutorDTO.buildDTO(
-                    autorRepository.save(autor.toAutorEntity())
+                    autorRepository.save(body.toAutorEntity())
             );
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
