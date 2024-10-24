@@ -7,7 +7,7 @@ import com.aranoua.referencias_bibliograficas.repository.ArtigoRepository;
 import java.util.Set;
 
 public record AutorCreateDTO(String nome, String afiliacao) {
-    public Autor toAutorEntity(ArtigoRepository repository){
+    public Autor toAutorEntity(){
         return new Autor(nome, afiliacao);
     }
 }
