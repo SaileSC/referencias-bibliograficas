@@ -23,10 +23,15 @@ public class Artigo {
     private String titulo;
     @Column(nullable = false, name = "ano_publicacao")
     private String anoPublicacao;
-
     @ManyToOne
     private RevistaCientifica revista;
-
     @ManyToMany(mappedBy = "artigos")
     private Set<Autor> autores = new HashSet<>();
+
+    public Artigo(String titulo, String anoPublicacao, RevistaCientifica revista, Set<Autor> autores){
+        this.titulo = titulo;
+        this.anoPublicacao = anoPublicacao;
+        this.revista = revista;
+        this.autores = autores;
+    }
 }

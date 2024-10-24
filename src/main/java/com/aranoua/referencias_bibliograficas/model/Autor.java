@@ -33,4 +33,9 @@ public class Autor {
             inverseJoinColumns = @JoinColumn(name = "artigo_id")
     )
     private Set<Artigo> artigos = new HashSet<>();
+
+    public Autor(String nome, String afiliacao) {
+        this.nome = nome;
+        this.afiliacao = afiliacao;
+    }
 }

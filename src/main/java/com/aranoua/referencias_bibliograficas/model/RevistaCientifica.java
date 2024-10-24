@@ -6,14 +6,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "revistas")
+@Table(name = "revistas_cientificas")
 public class RevistaCientifica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,5 +23,10 @@ public class RevistaCientifica {
     @Column(nullable = false, unique = true)
     private String ISSN;
     @OneToMany(mappedBy = "revista")
-    private List<Artigo> artigosPublicados;
+    private Set<Artigo> artigosPublicados;
+
+    public RevistaCientifica(String nome, String ISSN) {
+        this.nome = nome;
+        this.ISSN = ISSN;
+    }
 }
