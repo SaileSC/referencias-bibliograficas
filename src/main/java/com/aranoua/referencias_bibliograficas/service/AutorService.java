@@ -57,6 +57,6 @@ public class AutorService {
 
     private Autor encontrarAutor(long id){
         return autorRepository.findById(id).orElseThrow(() ->
-                new ObjectNotFoundException("Autor não encontrado AUTOR_ID" + id));
+                new ObjectNotFoundException("Autor não encontrado AUTOR_ID: " + id));
     }
 }

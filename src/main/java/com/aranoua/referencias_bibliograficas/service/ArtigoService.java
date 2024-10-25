@@ -67,6 +67,6 @@ public class ArtigoService {
 
     private Artigo encontrarArtigo(long id){
         return artigoRepository.findById(id).orElseThrow(() ->
-                new ObjectNotFoundException("Artigo não encontrado ARTIGO_ID:" + id));
+                new ObjectNotFoundException("Artigo não encontrado ARTIGO_ID: " + id));
     }
 }

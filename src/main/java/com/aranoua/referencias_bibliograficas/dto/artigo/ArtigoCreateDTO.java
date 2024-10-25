@@ -20,7 +20,7 @@ public record ArtigoCreateDTO(String titulo, String ano_publicacao, String revis
 
     private RevistaCientifica encontrarRevista(RevistaCientificaRepository repository){
         return  repository.findByNome(revista).orElseThrow(()->
-                new ObjectNotFoundException("Revista não encontrada NOME:" + revista));
+                new ObjectNotFoundException("Revista não encontrada NOME: " + revista));
     }
 
     private Set<Autor> encontrarAutores(AutorRepository repository){

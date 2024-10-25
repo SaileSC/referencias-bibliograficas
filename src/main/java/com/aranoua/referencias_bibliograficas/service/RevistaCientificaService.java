@@ -58,6 +58,6 @@ public class RevistaCientificaService {
 
     private RevistaCientifica encontrarRevista(long id){
         return revistaRepository.findById(id).orElseThrow(() ->
-                new ObjectNotFoundException("Revista não encontrado REVISTA_ID:" + id));
+                new ObjectNotFoundException("Revista não encontrado REVISTA_ID: " + id));
     }
 }
