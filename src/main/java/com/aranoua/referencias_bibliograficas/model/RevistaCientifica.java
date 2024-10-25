@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -23,7 +24,7 @@ public class RevistaCientifica {
     @Column(nullable = false, unique = true)
     private String ISSN;
     @OneToMany(mappedBy = "revista")
-    private Set<Artigo> artigosPublicados;
+    private Set<Artigo> artigosPublicados = new HashSet<>();
 
     public RevistaCientifica(String nome, String ISSN) {
         this.nome = nome;

@@ -1,7 +1,10 @@
 package com.aranoua.referencias_bibliograficas.controller;
 
+import com.aranoua.referencias_bibliograficas.dto.artigo.ArtigoCreateDTO;
+import com.aranoua.referencias_bibliograficas.dto.artigo.ArtigoDTO;
 import com.aranoua.referencias_bibliograficas.dto.autor.AutorCreateDTO;
 import com.aranoua.referencias_bibliograficas.dto.autor.AutorDTO;
+import com.aranoua.referencias_bibliograficas.service.ArtigoService;
 import com.aranoua.referencias_bibliograficas.service.AutorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
@@ -17,49 +20,49 @@ import java.net.URI;
 import java.util.Set;
 
 @Controller
-@RequestMapping("/api/autor")
-public class AutorController {
+@RequestMapping("/api/artigo")
+public class ArtigoController {
     @Autowired
-    AutorService autorService;
+    ArtigoService artigoService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Set<AutorDTO>> list(){
-        return ResponseEntity.ok().body(autorService.list());
+    public ResponseEntity<Set<ArtigoDTO>> list(){
+        return ResponseEntity.ok().body(artigoService.list());
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AutorDTO> read(@PathVariable long id){
-        return ResponseEntity.ok().body(autorService.read(id));
+    public ResponseEntity<ArtigoDTO> read(@PathVariable long id){
+        return ResponseEntity.ok().body(artigoService.read(id));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<EntityModel<AutorDTO>> create(@RequestBody AutorCreateDTO body){
-        AutorDTO autor = autorService.create(body);
+    public ResponseEntity<EntityModel<ArtigoDTO>> create(@RequestBody ArtigoCreateDTO body){
+        ArtigoDTO autor = artigoService.create(body);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(autor.id())
                 .toUri();
 
-        AutorController linkBuild = WebMvcLinkBuilder.methodOn(AutorController.class);
+        ArtigoController linkBuild = WebMvcLinkBuilder.methodOn(ArtigoController.class);
 
         Link list = WebMvcLinkBuilder.linkTo(linkBuild.list()).withRel("list");
         Link read = WebMvcLinkBuilder.linkTo(linkBuild.read(autor.id())).withRel("read");
         Link update = WebMvcLinkBuilder.linkTo(linkBuild.update(autor.id(), body)).withRel("update");
         Link delete = WebMvcLinkBuilder.linkTo(linkBuild.delete(autor.id())).withRel("delete");
 
-        EntityModel<AutorDTO> modelAutor = EntityModel.of(autor)
+        EntityModel<ArtigoDTO> modelAutor = EntityModel.of(autor)
                 .add(list, read, update, delete);
         return ResponseEntity.created(uri).body(modelAutor);
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AutorDTO> update(@PathVariable long id, @RequestBody AutorCreateDTO body){
-         return ResponseEntity.ok().body(autorService.update(id, body));
+    public ResponseEntity<ArtigoDTO> update(@PathVariable long id, @RequestBody ArtigoCreateDTO body){
+         return ResponseEntity.ok().body(artigoService.update(id, body));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable long id){
-         autorService.delete(id);
+        artigoService.delete(id);
          return ResponseEntity.ok().build();
     }
 }
