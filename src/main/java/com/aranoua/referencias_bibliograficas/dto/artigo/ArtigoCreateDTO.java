@@ -15,7 +15,9 @@ public record ArtigoCreateDTO(String titulo, String ano_publicacao, String revis
     public Artigo toArtigoEntity(RevistaCientificaRepository revistaRepository, AutorRepository autorRepository){
         RevistaCientifica revista = encontrarRevista(revistaRepository);
         Set<Autor> listaAutores = encontrarAutores(autorRepository);
-        return new Artigo(titulo, ano_publicacao, revista, listaAutores);
+        Artigo artigo = new Artigo(titulo, ano_publicacao, revista, listaAutores);
+        listaAutores.forEach(autor -> autor.getArtigos().add(artigo));
+        return artigo;
     }
 
     private RevistaCientifica encontrarRevista(RevistaCientificaRepository repository){

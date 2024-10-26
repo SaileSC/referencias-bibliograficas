@@ -5,6 +5,7 @@ import com.aranoua.referencias_bibliograficas.dto.artigo.ArtigoDTO;
 import com.aranoua.referencias_bibliograficas.dto.revista_cientifica.RevistaCreateDTO;
 import com.aranoua.referencias_bibliograficas.dto.revista_cientifica.RevistaDTO;
 import com.aranoua.referencias_bibliograficas.model.Artigo;
+import com.aranoua.referencias_bibliograficas.model.Autor;
 import com.aranoua.referencias_bibliograficas.model.RevistaCientifica;
 import com.aranoua.referencias_bibliograficas.repository.ArtigoRepository;
 import com.aranoua.referencias_bibliograficas.repository.AutorRepository;
@@ -14,6 +15,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -46,11 +48,37 @@ public class ArtigoService {
         }
     }
 
-    public ArtigoDTO update(long id, ArtigoCreateDTO body){
+    public ArtigoDTO update(long id, ArtigoCreateDTO body) {
         try {
             Artigo artigo = encontrarArtigo(id);
-            Artigo atualizaArtigo = body.toArtigoEntity(revistaRepository, autorRepository);
-            BeanUtils.copyProperties(body, atualizaArtigo, "id");
+
+            artigo.setTitulo(body.titulo());
+            artigo.setAnoPublicacao(body.ano_publicacao());
+
+            if (body.revista() != null) {
+                RevistaCientifica revista = revistaRepository.findByNome(body.revista())
+                        .orElseThrow(() -> new ObjectNotFoundException("Revista não encontrada: " + body.revista()));
+                artigo.setRevista(revista);
+            }
+
+            if (body.autores() != null) {
+                List<Autor> listaAutores = body.autores().stream()
+                        .map(nomeAutor -> autorRepository.findByNome(nomeAutor)
+                                .orElseThrow(() -> new ObjectNotFoundException("Autor não encontrado: " + nomeAutor)))
+                        .toList();
+
+                artigo.getAutores().forEach(autor -> {
+                    if(!listaAutores.contains(autor)){
+                        autor.getArtigos().remove(artigo);
+                    }
+                });
+
+                listaAutores.forEach(autor -> autor.getArtigos().add(artigo));
+
+                artigo.getAutores().clear();
+                artigo.getAutores().addAll(listaAutores);
+            }
+
             return ArtigoDTO.buildDTO(artigoRepository.save(artigo));
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
