@@ -2,16 +2,12 @@ package com.aranoua.referencias_bibliograficas.controller.exception;
 
 import com.aranoua.referencias_bibliograficas.model.MensagemException;
 import com.aranoua.referencias_bibliograficas.service.exception.ObjectNotFoundException;
-import jakarta.servlet.ServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.HashMap;
 import java.util.Map;

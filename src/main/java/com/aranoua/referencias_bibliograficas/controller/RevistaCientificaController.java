@@ -1,11 +1,8 @@
 package com.aranoua.referencias_bibliograficas.controller;
 
-import com.aranoua.referencias_bibliograficas.dto.autor.AutorCreateDTO;
-import com.aranoua.referencias_bibliograficas.dto.autor.AutorDTO;
 import com.aranoua.referencias_bibliograficas.dto.revista_cientifica.RevistaCreateDTO;
 import com.aranoua.referencias_bibliograficas.dto.revista_cientifica.RevistaDTO;
 import com.aranoua.referencias_bibliograficas.dto.revista_cientifica.RevistaSimplesDTO;
-import com.aranoua.referencias_bibliograficas.service.AutorService;
 import com.aranoua.referencias_bibliograficas.service.RevistaCientificaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

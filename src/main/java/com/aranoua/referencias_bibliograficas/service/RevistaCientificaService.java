@@ -4,7 +4,6 @@ import com.aranoua.referencias_bibliograficas.dto.revista_cientifica.RevistaCrea
 import com.aranoua.referencias_bibliograficas.dto.revista_cientifica.RevistaDTO;
 import com.aranoua.referencias_bibliograficas.dto.revista_cientifica.RevistaSimplesDTO;
 import com.aranoua.referencias_bibliograficas.model.RevistaCientifica;
-import com.aranoua.referencias_bibliograficas.repository.AutorRepository;
 import com.aranoua.referencias_bibliograficas.repository.RevistaCientificaRepository;
 import com.aranoua.referencias_bibliograficas.service.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
