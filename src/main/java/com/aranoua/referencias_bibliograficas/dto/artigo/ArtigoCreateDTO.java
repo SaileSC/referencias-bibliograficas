@@ -1,20 +1,29 @@
 package com.aranoua.referencias_bibliograficas.dto.artigo;
 
 
-import ch.qos.logback.core.pattern.util.AsIsEscapeUtil;
 import com.aranoua.referencias_bibliograficas.model.Artigo;
 import com.aranoua.referencias_bibliograficas.model.Autor;
 import com.aranoua.referencias_bibliograficas.model.RevistaCientifica;
 import com.aranoua.referencias_bibliograficas.repository.AutorRepository;
 import com.aranoua.referencias_bibliograficas.repository.RevistaCientificaRepository;
 import com.aranoua.referencias_bibliograficas.service.exception.ObjectNotFoundException;
-import org.springframework.beans.BeanUtils;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public record ArtigoCreateDTO(String titulo, String ano_publicacao, String revista, Set<String> autores) {
+public record ArtigoCreateDTO(
+        @NotBlank(message = "titulo não pode ser vazio")
+        String titulo,
+        @NotBlank(message = "ano_publicacao não pode ser vazio")
+        String ano_publicacao,
+        @NotBlank(message = "revista não pode ser vazio")
+        String revista,
+        @NotNull(message = "deva haver pelo menos um autor não pode ser vazio ex: ['autor']")
+        Set<String> autores
+) {
     public Artigo toArtigoEntity(RevistaCientificaRepository revistaRepository, AutorRepository autorRepository){
         RevistaCientifica revista = encontrarRevista(revistaRepository);
         Set<Autor> listaAutores = encontrarAutores(autorRepository);

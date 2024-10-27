@@ -3,6 +3,7 @@ package com.aranoua.referencias_bibliograficas.controller;
 import com.aranoua.referencias_bibliograficas.dto.autor.AutorCreateDTO;
 import com.aranoua.referencias_bibliograficas.dto.autor.AutorDTO;
 import com.aranoua.referencias_bibliograficas.service.AutorService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
@@ -33,7 +34,7 @@ public class AutorController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<EntityModel<AutorDTO>> create(@RequestBody AutorCreateDTO body){
+    public ResponseEntity<EntityModel<AutorDTO>> create(@Valid @RequestBody AutorCreateDTO body){
         AutorDTO autor = autorService.create(body);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -53,7 +54,7 @@ public class AutorController {
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AutorDTO> update(@PathVariable long id, @RequestBody AutorCreateDTO body){
+    public ResponseEntity<AutorDTO> update(@Valid @PathVariable long id, @RequestBody AutorCreateDTO body){
          return ResponseEntity.ok().body(autorService.update(id, body));
     }
 

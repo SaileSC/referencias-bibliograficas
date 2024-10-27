@@ -6,6 +6,7 @@ import com.aranoua.referencias_bibliograficas.dto.revista_cientifica.RevistaCrea
 import com.aranoua.referencias_bibliograficas.dto.revista_cientifica.RevistaDTO;
 import com.aranoua.referencias_bibliograficas.service.AutorService;
 import com.aranoua.referencias_bibliograficas.service.RevistaCientificaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
@@ -36,7 +37,7 @@ public class RevistaCientificaController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<EntityModel<RevistaDTO>> create(@RequestBody RevistaCreateDTO body){
+    public ResponseEntity<EntityModel<RevistaDTO>> create(@Valid @RequestBody RevistaCreateDTO body){
         RevistaDTO autor = revistaCientificaService.create(body);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -56,7 +57,7 @@ public class RevistaCientificaController {
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<RevistaDTO> update(@PathVariable long id, @RequestBody RevistaCreateDTO body){
+    public ResponseEntity<RevistaDTO> update(@Valid @PathVariable long id, @RequestBody RevistaCreateDTO body){
          return ResponseEntity.ok().body(revistaCientificaService.update(id, body));
     }
 

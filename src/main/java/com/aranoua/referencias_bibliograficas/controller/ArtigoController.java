@@ -2,10 +2,8 @@ package com.aranoua.referencias_bibliograficas.controller;
 
 import com.aranoua.referencias_bibliograficas.dto.artigo.ArtigoCreateDTO;
 import com.aranoua.referencias_bibliograficas.dto.artigo.ArtigoDTO;
-import com.aranoua.referencias_bibliograficas.dto.autor.AutorCreateDTO;
-import com.aranoua.referencias_bibliograficas.dto.autor.AutorDTO;
 import com.aranoua.referencias_bibliograficas.service.ArtigoService;
-import com.aranoua.referencias_bibliograficas.service.AutorService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
@@ -36,7 +34,7 @@ public class ArtigoController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<EntityModel<ArtigoDTO>> create(@RequestBody ArtigoCreateDTO body){
+    public ResponseEntity<EntityModel<ArtigoDTO>> create(@Valid @RequestBody ArtigoCreateDTO body){
         ArtigoDTO autor = artigoService.create(body);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -56,7 +54,7 @@ public class ArtigoController {
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ArtigoDTO> update(@PathVariable long id, @RequestBody ArtigoCreateDTO body){
+    public ResponseEntity<ArtigoDTO> update(@PathVariable long id,@Valid @RequestBody ArtigoCreateDTO body){
          return ResponseEntity.ok().body(artigoService.update(id, body));
     }
 
