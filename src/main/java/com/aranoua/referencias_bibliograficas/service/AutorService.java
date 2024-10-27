@@ -2,6 +2,7 @@ package com.aranoua.referencias_bibliograficas.service;
 
 import com.aranoua.referencias_bibliograficas.dto.autor.AutorCreateDTO;
 import com.aranoua.referencias_bibliograficas.dto.autor.AutorDTO;
+import com.aranoua.referencias_bibliograficas.dto.autor.AutorSimplesDTO;
 import com.aranoua.referencias_bibliograficas.model.Autor;
 import com.aranoua.referencias_bibliograficas.repository.AutorRepository;
 import com.aranoua.referencias_bibliograficas.service.exception.ObjectNotFoundException;
@@ -16,9 +17,9 @@ public class AutorService {
     @Autowired
     AutorRepository autorRepository;
 
-    public Set<AutorDTO> list(){
+    public Set<AutorSimplesDTO> list(){
         return autorRepository.findAll().stream()
-                .map(AutorDTO::buildDTO)
+                .map(AutorSimplesDTO::buildDTO)
                 .collect(Collectors.toSet());
     }
 
@@ -26,9 +27,9 @@ public class AutorService {
         return AutorDTO.buildDTO(encontrarAutor(id));
     }
 
-    public AutorDTO create(AutorCreateDTO body){
+    public AutorSimplesDTO create(AutorCreateDTO body){
         try {
-            return AutorDTO.buildDTO(
+            return AutorSimplesDTO.buildDTO(
                     autorRepository.save(body.toAutorEntity())
             );
         } catch (RuntimeException e) {

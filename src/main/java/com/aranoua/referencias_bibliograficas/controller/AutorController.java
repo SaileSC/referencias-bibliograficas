@@ -2,6 +2,7 @@ package com.aranoua.referencias_bibliograficas.controller;
 
 import com.aranoua.referencias_bibliograficas.dto.autor.AutorCreateDTO;
 import com.aranoua.referencias_bibliograficas.dto.autor.AutorDTO;
+import com.aranoua.referencias_bibliograficas.dto.autor.AutorSimplesDTO;
 import com.aranoua.referencias_bibliograficas.service.AutorService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class AutorController {
     AutorService autorService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Set<AutorDTO>> list(){
+    public ResponseEntity<Set<AutorSimplesDTO>> list(){
         return ResponseEntity.ok().body(autorService.list());
     }
 
@@ -34,8 +35,8 @@ public class AutorController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<EntityModel<AutorDTO>> create(@Valid @RequestBody AutorCreateDTO body){
-        AutorDTO autor = autorService.create(body);
+    public ResponseEntity<EntityModel<AutorSimplesDTO>> create(@Valid @RequestBody AutorCreateDTO body){
+        AutorSimplesDTO autor = autorService.create(body);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(autor.id())
@@ -48,7 +49,7 @@ public class AutorController {
         Link update = WebMvcLinkBuilder.linkTo(linkBuild.update(autor.id(), body)).withRel("update");
         Link delete = WebMvcLinkBuilder.linkTo(linkBuild.delete(autor.id())).withRel("delete");
 
-        EntityModel<AutorDTO> modelAutor = EntityModel.of(autor)
+        EntityModel<AutorSimplesDTO> modelAutor = EntityModel.of(autor)
                 .add(list, read, update, delete);
         return ResponseEntity.created(uri).body(modelAutor);
     }

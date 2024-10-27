@@ -4,6 +4,7 @@ import com.aranoua.referencias_bibliograficas.dto.autor.AutorCreateDTO;
 import com.aranoua.referencias_bibliograficas.dto.autor.AutorDTO;
 import com.aranoua.referencias_bibliograficas.dto.revista_cientifica.RevistaCreateDTO;
 import com.aranoua.referencias_bibliograficas.dto.revista_cientifica.RevistaDTO;
+import com.aranoua.referencias_bibliograficas.dto.revista_cientifica.RevistaSimplesDTO;
 import com.aranoua.referencias_bibliograficas.service.AutorService;
 import com.aranoua.referencias_bibliograficas.service.RevistaCientificaService;
 import jakarta.validation.Valid;
@@ -27,7 +28,7 @@ public class RevistaCientificaController {
     RevistaCientificaService revistaCientificaService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Set<RevistaDTO>> list(){
+    public ResponseEntity<Set<RevistaSimplesDTO>> list(){
         return ResponseEntity.ok().body(revistaCientificaService.list());
     }
 
@@ -37,8 +38,8 @@ public class RevistaCientificaController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<EntityModel<RevistaDTO>> create(@Valid @RequestBody RevistaCreateDTO body){
-        RevistaDTO autor = revistaCientificaService.create(body);
+    public ResponseEntity<EntityModel<RevistaSimplesDTO>> create(@Valid @RequestBody RevistaCreateDTO body){
+        RevistaSimplesDTO autor = revistaCientificaService.create(body);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(autor.id())
@@ -51,7 +52,7 @@ public class RevistaCientificaController {
         Link update = WebMvcLinkBuilder.linkTo(linkBuild.update(autor.id(), body)).withRel("update");
         Link delete = WebMvcLinkBuilder.linkTo(linkBuild.delete(autor.id())).withRel("delete");
 
-        EntityModel<RevistaDTO> modelAutor = EntityModel.of(autor)
+        EntityModel<RevistaSimplesDTO> modelAutor = EntityModel.of(autor)
                 .add(list, read, update, delete);
         return ResponseEntity.created(uri).body(modelAutor);
     }

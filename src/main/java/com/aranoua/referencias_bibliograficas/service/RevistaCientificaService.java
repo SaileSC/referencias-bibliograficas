@@ -2,6 +2,7 @@ package com.aranoua.referencias_bibliograficas.service;
 
 import com.aranoua.referencias_bibliograficas.dto.revista_cientifica.RevistaCreateDTO;
 import com.aranoua.referencias_bibliograficas.dto.revista_cientifica.RevistaDTO;
+import com.aranoua.referencias_bibliograficas.dto.revista_cientifica.RevistaSimplesDTO;
 import com.aranoua.referencias_bibliograficas.model.RevistaCientifica;
 import com.aranoua.referencias_bibliograficas.repository.AutorRepository;
 import com.aranoua.referencias_bibliograficas.repository.RevistaCientificaRepository;
@@ -17,9 +18,9 @@ public class RevistaCientificaService {
     @Autowired
     RevistaCientificaRepository revistaRepository;
 
-    public Set<RevistaDTO> list(){
+    public Set<RevistaSimplesDTO> list(){
         return revistaRepository.findAll().stream()
-                .map(RevistaDTO::buildDTO)
+                .map(RevistaSimplesDTO::buildDTO)
                 .collect(Collectors.toSet());
     }
 
@@ -27,9 +28,9 @@ public class RevistaCientificaService {
         return RevistaDTO.buildDTO(encontrarRevista(id));
     }
 
-    public RevistaDTO create(RevistaCreateDTO body){
+    public RevistaSimplesDTO create(RevistaCreateDTO body){
         try {
-            return RevistaDTO.buildDTO(
+            return RevistaSimplesDTO.buildDTO(
                     revistaRepository.save(body.toRevistaEntity())
             );
         } catch (RuntimeException e) {
