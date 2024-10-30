@@ -1,6 +1,7 @@
 package com.aranoua.referencias_bibliograficas.dto.artigo;
 
 
+import com.aranoua.referencias_bibliograficas.dto.autor.AutorCreateDTO;
 import com.aranoua.referencias_bibliograficas.model.Artigo;
 import com.aranoua.referencias_bibliograficas.model.Autor;
 import com.aranoua.referencias_bibliograficas.model.RevistaCientifica;
@@ -10,7 +11,6 @@ import com.aranoua.referencias_bibliograficas.service.exception.ObjectNotFoundEx
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -22,7 +22,7 @@ public record ArtigoCreateDTO(
         @NotBlank(message = "revista não pode ser vazio")
         String revista,
         @NotNull(message = "deva haver pelo menos um autor não pode ser vazio ex: ['autor']")
-        Set<String> autores
+        Set<AutorCreateDTO> autores
 ) {
     public Artigo toArtigoEntity(RevistaCientificaRepository revistaRepository, AutorRepository autorRepository){
         RevistaCientifica revista = encontrarRevista(revistaRepository);
@@ -35,18 +35,20 @@ public record ArtigoCreateDTO(
     public Artigo artigoAtualizado(Artigo artigoAntigo, RevistaCientificaRepository revistaRepository, AutorRepository autorRepository){
         Set<Autor> novalistaAutores = encontrarAutores(autorRepository);
 
-        artigoAntigo.getAutores().addAll(novalistaAutores);
-        for (Autor autor : artigoAntigo.getAutores()) {
+        //Remove referencia do artigo nos autores removidos
+        for(Autor autor: artigoAntigo.getAutores()){
             if(!novalistaAutores.contains(autor)){
                 autor.getArtigos().remove(artigoAntigo);
             }
         }
-
-        if(!Objects.equals(revista, artigoAntigo.getRevista().getNome())){
-            RevistaCientifica revista = encontrarRevista(revistaRepository);
-            artigoAntigo.setRevista(revista);
+        //Atualiza lista de autores
+        artigoAntigo.setAutores(novalistaAutores);
+        //adiciona referencia de artigo para artigos atuais
+        for(Autor autor: artigoAntigo.getAutores()){
+            autor.getArtigos().add(artigoAntigo);
         }
 
+        artigoAntigo.setRevista(encontrarRevista(revistaRepository));
         artigoAntigo.setTitulo(titulo);
         artigoAntigo.setAnoPublicacao(ano_publicacao);
         return artigoAntigo;
@@ -59,9 +61,9 @@ public record ArtigoCreateDTO(
 
     private Set<Autor> encontrarAutores(AutorRepository repository){
         return autores.stream()
-                .map(nomeAutor ->
-                        repository.findByNome(nomeAutor).orElseThrow(()->
-                                new ObjectNotFoundException("Autor não encontrado NOME:"+ nomeAutor)))
+                .map(autor ->
+                        repository.findByNomeAndAfiliacao_Referencia(autor.nome(), autor.referencia()).orElseThrow(()->
+                                new ObjectNotFoundException("Autor não encontrado Autor:"+ autor)))
                 .collect(Collectors.toSet());
     }
 }

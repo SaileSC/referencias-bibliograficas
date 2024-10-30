@@ -1,0 +1,563 @@
+{
+	"info": {
+		"_postman_id": "7d8a2602-632d-4c9c-a626-bb31013336ce",
+		"name": "Spring referencias",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19353624"
+	},
+	"item": [
+		{
+			"name": "Autor",
+			"item": [
+				{
+					"name": "lista autores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/autor",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"autor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pegar um autor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/autor/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"autor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar autor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"saile\",\r\n    \"referencia\": \"IFAMCMZL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/autor",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"autor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar autor",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"novoNome\",\r\n    \"afiliacao\": \"Insti\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/autor/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"autor",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar estado",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Distrito Federal\",\r\n    \"sigla\": \"DF\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/autor/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"autor",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Afiliacao",
+			"item": [
+				{
+					"name": "lista afiliacoes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/afiliacao",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"afiliacao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pegar uma afiliacao",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/afiliacao/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"afiliacao",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar afiliacao",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sigla\": \"IFAM2\",\r\n    \"nome\": \"Intituto Federal do Amazonas\",\r\n    \"referencia\": \"IFAMCMZL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/afiliacao",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"afiliacao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar afiliacao",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sigla\": \"UFAM\",\r\n    \"nome\": \"Intituto Federal do Amazonas\",\r\n    \"referencia\": \"IFAMCMZL4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/afiliacao/4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"afiliacao",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar afiliacao",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/afiliacao/4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"afiliacao",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Revista",
+			"item": [
+				{
+					"name": "lista revistas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/revista",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"revista"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pegar uma revista",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/revista/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"revista",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar revista",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Cientia\",\r\n    \"ISSN\": \"123455\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/revista",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"revista"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar revista",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Doce lar\",\r\n    \"ISSN\": \"78451236578\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/revista/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"revista",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar revista",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Distrito Federal\",\r\n    \"sigla\": \"DF\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/revista/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"revista",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Artigo",
+			"item": [
+				{
+					"name": "lista artigos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/artigo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"artigo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pegar um artigo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/artigo/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"artigo",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar artigo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Artigo3\",\r\n    \"ano_publicacao\": \"2016\",\r\n    \"revista\": \"Cientia\",\r\n    \"autores\": [\r\n        {\r\n            \"nome\": \"elias\",\r\n            \"referencia\": \"IFAMCMZL\"\r\n        },\r\n        {\r\n            \"nome\": \"saile\",\r\n            \"referencia\": \"IFAMCMZL\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/artigo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"artigo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar artigo Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Artigo3\",\r\n    \"ano\": \"2016\",\r\n    \"revista\": \"NovaRevista\",\r\n    \"autores\": [\r\n        {\r\n            \"nome\": \"elias\",\r\n            \"afiliacao\": \"IFAM\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/artigo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"artigo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar artigo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"titulo\": \"Artigo2\",\r\n    \"ano_publicacao\": \"2345\",\r\n    \"revista\": \"Doce lar\",\r\n    \"autores\": [\r\n        {\r\n            \"nome\": \"elias\",\r\n            \"afiliacao\": \"IFAM\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/artigo/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"artigo",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar artigo Copy",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Artigo3\",\r\n    \"ano\": \"2016\",\r\n    \"revista\": \"NovaRevista\",\r\n    \"autores\": [\r\n        {\r\n            \"nome\": \"elias\",\r\n            \"afiliacao\": \"IFAM\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/artigo/5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"artigo",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar artigo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Distrito Federal\",\r\n    \"sigla\": \"DF\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/artigo/5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"artigo",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080/api",
+			"type": "string"
+		}
+	]
+}

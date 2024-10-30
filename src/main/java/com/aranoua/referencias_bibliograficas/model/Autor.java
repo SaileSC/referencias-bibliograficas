@@ -22,9 +22,9 @@ public class Autor {
     private long id;
     @Column(nullable = false)
     private String nome;
-    //pode ser uma entidade
-    @Column(nullable = false)
-    private String afiliacao;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "afiliacao_id", nullable = false)
+    private Afiliacao afiliacao;
 
     @ManyToMany
     @JoinTable(
@@ -34,7 +34,7 @@ public class Autor {
     )
     private Set<Artigo> artigos = new HashSet<>();
 
-    public Autor(String nome, String afiliacao) {
+    public Autor(String nome, Afiliacao afiliacao) {
         this.nome = nome;
         this.afiliacao = afiliacao;
     }
