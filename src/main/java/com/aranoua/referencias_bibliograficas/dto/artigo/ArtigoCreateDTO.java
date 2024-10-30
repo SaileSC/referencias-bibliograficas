@@ -33,10 +33,11 @@ public record ArtigoCreateDTO(
     }
 
     public Artigo artigoAtualizado(Artigo artigoAntigo, RevistaCientificaRepository revistaRepository, AutorRepository autorRepository){
-        Set<Autor> listaAutores = encontrarAutores(autorRepository);
-        artigoAntigo.getAutores().addAll(listaAutores);
+        Set<Autor> novalistaAutores = encontrarAutores(autorRepository);
+
+        artigoAntigo.getAutores().addAll(novalistaAutores);
         for (Autor autor : artigoAntigo.getAutores()) {
-            if(!listaAutores.contains(autor)){
+            if(!novalistaAutores.contains(autor)){
                 autor.getArtigos().remove(artigoAntigo);
             }
         }

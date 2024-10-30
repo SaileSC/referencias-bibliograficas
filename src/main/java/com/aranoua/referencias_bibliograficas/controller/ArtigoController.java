@@ -42,7 +42,6 @@ public class ArtigoController {
                 .toUri();
 
         ArtigoController linkBuild = WebMvcLinkBuilder.methodOn(ArtigoController.class);
-
         Link list = WebMvcLinkBuilder.linkTo(linkBuild.list()).withRel("list");
         Link read = WebMvcLinkBuilder.linkTo(linkBuild.read(autor.id())).withRel("read");
         Link update = WebMvcLinkBuilder.linkTo(linkBuild.update(autor.id(), body)).withRel("update");
