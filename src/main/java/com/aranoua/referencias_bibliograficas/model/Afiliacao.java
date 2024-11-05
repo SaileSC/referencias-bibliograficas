@@ -1,15 +1,7 @@
 package com.aranoua.referencias_bibliograficas.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Setter
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "afiliacao")
 public class Afiliacao {
@@ -23,9 +15,51 @@ public class Afiliacao {
     @Column(nullable = false, unique = true)
     private String referencia;
 
+    public Afiliacao() {
+    }
+
+    public Afiliacao(long id, String nome, String sigla, String referencia) {
+        this.id = id;
+        this.nome = nome;
+        this.sigla = sigla;
+        this.referencia = referencia;
+    }
+
     public Afiliacao(String nome, String sigla, String referencia){
         this.nome = nome;
         this.sigla = sigla;
+        this.referencia = referencia;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getSigla() {
+        return sigla;
+    }
+
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
+    }
+
+    public String getReferencia() {
+        return referencia;
+    }
+
+    public void setReferencia(String referencia) {
         this.referencia = referencia;
     }
 }

@@ -1,15 +1,30 @@
 package com.aranoua.referencias_bibliograficas.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Setter
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
 public class MensagemException {
     private String codigo;
     private String mensagem;
+
+    public MensagemException() {
+    }
+
+    public MensagemException(String codigo, String mensagem) {
+        this.codigo = codigo;
+        this.mensagem = mensagem;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
+    }
 }

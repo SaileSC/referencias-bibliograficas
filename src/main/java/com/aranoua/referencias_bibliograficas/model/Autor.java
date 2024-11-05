@@ -1,19 +1,10 @@
 package com.aranoua.referencias_bibliograficas.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
 
-
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "autores")
 public class Autor {
@@ -34,8 +25,50 @@ public class Autor {
     )
     private Set<Artigo> artigos = new HashSet<>();
 
+    public Autor() {
+    }
+
+    public Autor(long id, String nome, Afiliacao afiliacao, Set<Artigo> artigos) {
+        this.id = id;
+        this.nome = nome;
+        this.afiliacao = afiliacao;
+        this.artigos = artigos;
+    }
+
     public Autor(String nome, Afiliacao afiliacao) {
         this.nome = nome;
         this.afiliacao = afiliacao;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Afiliacao getAfiliacao() {
+        return afiliacao;
+    }
+
+    public void setAfiliacao(Afiliacao afiliacao) {
+        this.afiliacao = afiliacao;
+    }
+
+    public Set<Artigo> getArtigos() {
+        return artigos;
+    }
+
+    public void setArtigos(Set<Artigo> artigos) {
+        this.artigos = artigos;
     }
 }
